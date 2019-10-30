@@ -11,6 +11,13 @@ class Buku extends CI_Controller {
         $this->load->model('buku_m');
     }
 
+    public function index() {
+        $data = $this->buku_m->get();
+        $this->load->view('templates/header');
+        $this->load->view('pages/buku/index', ['buku' => $data]);
+        $this->load->view('templates/footer');
+    }
+
     public function create() {
         $this->load->view('templates/header');
         $this->load->view('pages/buku/create');
@@ -26,6 +33,13 @@ class Buku extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('pages/buku/create');
             $this->load->view('templates/footer');
+        }
+        $data = $this->input->post();
+
+        $result = $this->buku_m->store($data);
+
+        if ($result) {
+            redirect('buku');
         }
     }
 
@@ -74,7 +88,8 @@ class Buku extends CI_Controller {
         $this->buku_m->update($id, $data);
     }
 
-    public function delete($id){
+    public function delete($id) {
         $this->buku_m->delete($id);
     }
+
 }

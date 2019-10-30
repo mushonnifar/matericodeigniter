@@ -14,6 +14,6 @@
     <label>Pengarang</label>
     <input type="text" name="pengarang" class="form-control" placeholder="Pengarang">
 </div>
-<button type="submit" name="add" value="add" class="btn btn-primary">Submit</button>
+<button type="submit" value="add" class="btn btn-primary">Submit</button>
 <?= form_close() ?>
 <!--</form>-->
