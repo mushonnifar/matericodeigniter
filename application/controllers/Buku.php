@@ -43,53 +43,35 @@ class Buku extends CI_Controller {
         }
     }
 
-    public function coba_helper() {
-        $this->load->helper('convert');
+    public function edit($id) {
+        $data = $this->buku_m->get_by_id($id);
 
-        echo month_ina('09');
+        $this->load->view('templates/header');
+        $this->load->view('pages/buku/edit', ['data' => $data]);
+        $this->load->view('templates/footer');
     }
 
-    public function get_data_regular() {
-        $result = $this->buku_m->get_all();
-
-        echo '<pre>';
-        print_r($result);
-    }
-
-    public function get_data() {
-        $result = $this->buku_m->get();
-
-        echo '<pre>';
-        print_r($result);
-    }
-
-    public function find($id) {
-        $result = $this->buku_m->get_by_id($id);
-
-        echo '<pre>';
-        print_r($result);
-    }
-
-    public function insert() {
-        $data = [
-            "name" => "Belajar Query Builder",
-            "penerbit" => "PT. SISI",
-            "pengarang" => "Mushonnif"
+    public function update() {
+        $data = $this->input->post();
+        
+        $edit = [
+            "name" => $data['name'],
+            "penerbit" => $data['penerbit'],
+            "pengarang" => $data['pengarang']
         ];
-
-        $this->buku_m->store($data);
+        
+        $result = $this->buku_m->update($data['id'], $edit);
+        
+        if ($result) {
+            redirect('buku');
+        }
     }
-
-    public function update($id) {
-        $data = [
-            "pengarang" => "Ahmad"
-        ];
-
-        $this->buku_m->update($id, $data);
-    }
-
+    
     public function delete($id) {
-        $this->buku_m->delete($id);
+        $result = $this->buku_m->delete($id);
+        
+        if ($result) {
+            redirect('buku');
+        }
     }
-
 }

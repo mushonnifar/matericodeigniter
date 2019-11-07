@@ -16,9 +16,8 @@ class Buku_m extends CI_Model {
     }
 
     public function get_by_id($id) {
-        $data = $this->db->select('name, pengarang')->where('id', $id)->get('buku');
-//        $this->db->where('id', $id);
-//        $data = $this->db->get('buku');
+        $this->db->where('id', $id);
+        $data = $this->db->get('buku');
 
         return $data->row_array();
     }
@@ -29,11 +28,11 @@ class Buku_m extends CI_Model {
 
     public function update($id, $data) {
         $this->db->where('id', $id);
-        $this->db->update('buku', $data);
+        return $this->db->update('buku', $data);
     }
 
     public function delete($id) {
-        $this->db->delete('buku', ['id' => $id]);
+        return $this->db->delete('buku', ['id' => $id]);
     }
 
 }

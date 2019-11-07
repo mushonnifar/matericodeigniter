@@ -19,11 +19,12 @@
                 <td><?= $value['penerbit'] ?></td>
                 <td><?= $value['pengarang'] ?></td>
                 <td>
-                    <a href="?action=edit&id=<?= $value['id'] ?>" class="btn btn-sm btn-warning">Edit</a>&nbsp;
-                    <a href="?action=delete&id=<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="<?= base_url('buku/edit/') . $value['id'] ?>" class="btn btn-sm btn-warning">Edit</a>&nbsp;
+                    <a href="<?= base_url('buku/delete/') . $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
-            <?php $i++;
+            <?php
+            $i++;
         }
         ?>
     <tbody>
